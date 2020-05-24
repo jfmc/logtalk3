@@ -20,6 +20,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+:- use_module(library(system), [current_env/2]).
+:- use_module(engine(runtime_control), [set_prolog_flag/2]).
 
 :- use_package(iso).
 
@@ -34,6 +36,7 @@
 % :- op(400, yfx, <<).
 % :- op(600,  fy,  :).
 % :- op(400, yfx, >>).
+
 
 logtalk_ciao_init :-
 	set_prolog_flag(multi_arity_warnings, off),
