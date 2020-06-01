@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %  Adapter file for Ciao Prolog 1.19.0
-%  Last updated on May 23, 2020
+%  Last updated on May 25, 2020
 %
 %  This file is part of Logtalk <https://logtalk.org/>
 %  Copyright 1998-2020 Paulo Moura <pmoura@logtalk.org>
@@ -19,6 +19,7 @@
 %  limitations under the License.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 :- use_package(iso).
 
@@ -43,9 +44,9 @@
 
 % '$lgt_iso_predicate'(?callable).
 
-'$lgt_iso_predicate'(term_variables(_, _)).
+'$lgt_iso_predicate'(_) :-
+	fail.
 
-:- use_module(library(terms_vars)).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,10 +66,7 @@
 :- use_module(library(aggregates)).
 
 
-% forall(+callable, +callable)
-
-forall(Generate, Test) :-
-	\+ (Generate, \+ Test).
+% forall(+callable, +callable) -- provided by the "iso" package
 
 
 % format(+stream_or_alias, +character_code_list_or_atom, +list)
@@ -85,7 +83,7 @@ forall(Generate, Test) :-
 
 % numbervars(?term, +integer, ?integer)
 
-:- use_module(library(write)).
+:- use_module(library(write), [numbervars/3]).
 
 
 
@@ -101,7 +99,6 @@ forall(Generate, Test) :-
 
 
 % '$lgt_predicate_property'(+callable, ?predicate_property)
-
 
 '$lgt_predicate_property'(Pred, built_in) :-
 	'$lgt_iso_spec_predicate'(Pred).
@@ -161,8 +158,15 @@ forall(Generate, Test) :-
 
 % '$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(@nonvar, -atom)
 
-'$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(_, _) :-
-	fail.
+'$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(Spec, *) :-
+	var(Spec),
+	!.
+'$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(?, *).
+'$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(+, *).
+'$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(-, *).
+'$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(goal, 0).
+'$lgt_prolog_to_logtalk_meta_argument_specifier_hook'(pred(N), M) :-
+	M is N - 1.
 
 
 % '$lgt_candidate_tautology_or_falsehood_goal_hook'(@callable)
@@ -331,7 +335,8 @@ forall(Generate, Test) :-
 % checks if a file exists
 
 '$lgt_file_exists'(File) :-
-	file_exists(File).
+	file_exists(File),
+	file_property(File, type(regular)).
 
 
 % '$lgt_delete_file'(+atom)

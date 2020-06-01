@@ -80,6 +80,7 @@ following table summarizes the availability of these features:
 |  Compiler        |    Tabling    |  Coinduction  |    Unicode    |    Engines    |    Threads    |  
 | :--------------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |  
 |  B-Prolog        |      yes      |       no      |       no      |       no      |       no      |  
+|  Ciao Prolog     |       no      |       no      |       no      |       no      |       no      |  
 |  CxProlog        |       no      |     partial   |      yes      |       no      |       no      |  
 |  ECLiPSe         |       no      |     partial   |       no      |      yes      |     partial   |  
 |  JIProlog        |       no      |       no      |      yes      |       no      |       no      |  
@@ -89,6 +90,7 @@ following table summarizes the availability of these features:
 |  Quintus Prolog  |       no      |       no      |       no      |       no      |       no      |  
 |  SICStus Prolog  |       no      |      yes      |      yes      |       no      |       no      |  
 |  SWI-Prolog      |      yes      |      yes      |      yes      |      yes      |      yes      |  
+|  Tau Prolog      |       no      |       no      |      yes      |       no      |       no      |  
 |  XSB             |      yes      |       no      |       no      |       no      |      yes      |  
 |  YAP             |      yes      |      yes      |      yes      |       no      |      yes      |  
 
@@ -132,6 +134,18 @@ Matching clauses and action rules are currently not supported.
 
 On Windows, the environment variable `BPDIR` must be defined and pointing
 to the B-Prolog installation directory for the installer to detect it.
+
+
+Ciao Prolog 1.19.0 and later versions
+-------------------------------------
+
+	ciao.pl
+
+Experimental. Joint work with the Ciao Prolog developer José Morales. One
+known issue is that most ISO Prolog standard and de facto standard predicates
+are not built-in predicates but library predicates. The internal predicate
+that checks predicate properties (defined in the adapter file) tries to
+workaround this issue for those predicates but the solution is fragile.
 
 
 CxProlog 0.98.1 or later versions
@@ -412,6 +426,18 @@ generate saved states that include Logtalk applications.
 
 Messages sent from modules (including `user`) use static binding when the
 Logtalk `optimize` flag is turned on before compiling the module files.
+
+
+Tau Prolog 0.3.0 and later versions
+-----------------------------------
+
+	tau.pl
+
+Experimental. Joint work with the Tau Prolog developers. For faster startups
+after the first one when using the provided `taulgt` integration script,
+edit the `core/core.pl` file and change the compiler flag `clean(on)` to
+`clean(off)` for loading the built-in entities (look into the end of the
+file for the predicate that loads them).
 
 
 XSB 3.8.0 and later versions

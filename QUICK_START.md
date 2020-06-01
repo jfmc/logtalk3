@@ -32,6 +32,7 @@ by default for running Logtalk with the supported backend Prolog compilers
 (which must be installed and up-to-date before running these scripts):
 
 * B-Prolog:       `bplgt`
+* Ciao Prolog:    `ciaolgt`    (first run may require `sudo`)
 * CxProlog:       `cxlgt`
 * ECLiPSe:        `eclipselgt`
 * GNU Prolog:     `gplgt`
@@ -41,6 +42,7 @@ by default for running Logtalk with the supported backend Prolog compilers
 * Quintus Prolog: `quintuslgt` (experimental)
 * SICStus Prolog: `sicstuslgt`
 * SWI-Prolog:     `swilgt`
+* Tau Prolog:     `taulgt`     (experimental)
 * XSB:            `xsblgt`     (first run may require `sudo`)
 * XSB MT:         `xsbmtlgt`   (first run may require `sudo`)
 * YAP:            `yaplgt`
@@ -79,6 +81,14 @@ This will provide you with an overview on how to get help and how to load
 and debug your code.
 
 
+Help on understanding compiler errors and warnings
+--------------------------------------------------
+
+Start Logtalk and call the goal `{tutor(loader)}`. The `tutor` tool will
+augment compiler errors and warnings with explanations and suggestions on
+how to solve the reported problems.
+
+
 Loading libraries, examples, and tools
 --------------------------------------
 
@@ -109,13 +119,15 @@ Writing your own programs
 
 Ready to start writing your own programs?
 
-1. Read the User Manual sections on `Programming in Logtalk` and
-`Running and debugging Logtalk programs`.
+1. Read the Handbook sections on "Writing and running applications" and
+"Debugging". If you want to use your Prolog backend resources, read also
+the section on "Prolog integration and migration".
 
 2. Take a look at the [`coding`](coding) directory. There you will find
 syntax  support files for popular text editors which enable syntax coloring
 and other text services when editing Logtalk source files. There's also
-support for syntax highlighters used for publishing source code.
+support for syntax highlighters used for publishing source code and for
+source code versioning systems.
 
 3. The [`tools`](tools) directory contains a comprehensive set of developer
 tools to help you test, debug, analyze, and document your applications.

@@ -3452,7 +3452,7 @@ create_logtalk_flag(Flag, Value, Options) :-
 % versions, 'rcN' for release candidates (with N being a natural number),
 % and 'stable' for stable versions
 
-'$lgt_version_data'(logtalk(3, 39, 0, b01)).
+'$lgt_version_data'(logtalk(3, 39, 0, b02)).
 
 
 
@@ -14994,6 +14994,26 @@ create_logtalk_flag(Flag, Value, Options) :-
 	'$lgt_print_message'(warning(always_true_or_false_goals), goal_is_always_false(File, Lines, Type, Entity, Term is Exp)),
 	fail.
 '$lgt_compile_body'(Term is Exp, _, _, _) :-
+	integer(Term),
+	ground(Exp),
+	catch(Value is Exp, _, fail),
+	float(Value),
+	'$lgt_compiler_flag'(always_true_or_false_goals, warning),
+	'$lgt_increment_compiling_warnings_counter',
+	'$lgt_source_file_context'(File, Lines, Type, Entity),
+	'$lgt_print_message'(warning(always_true_or_false_goals), goal_is_always_false(File, Lines, Type, Entity, Term is Exp)),
+	fail.
+'$lgt_compile_body'(Term is Exp, _, _, _) :-
+	float(Term),
+	ground(Exp),
+	catch(Value is Exp, _, fail),
+	integer(Value),
+	'$lgt_compiler_flag'(always_true_or_false_goals, warning),
+	'$lgt_increment_compiling_warnings_counter',
+	'$lgt_source_file_context'(File, Lines, Type, Entity),
+	'$lgt_print_message'(warning(always_true_or_false_goals), goal_is_always_false(File, Lines, Type, Entity, Term is Exp)),
+	fail.
+'$lgt_compile_body'(Term is Exp, _, _, _) :-
 	var(Term),
 	Term \== Exp,
 	term_variables(Exp, ExpVariables),
@@ -23898,6 +23918,13 @@ create_logtalk_flag(Flag, Value, Options) :-
 '$lgt_iso_spec_predicate'(fail).
 '$lgt_iso_spec_predicate'(false).
 '$lgt_iso_spec_predicate'(call(_)).
+'$lgt_iso_spec_predicate'(call(_, _)).
+'$lgt_iso_spec_predicate'(call(_, _, _)).
+'$lgt_iso_spec_predicate'(call(_, _, _, _)).
+'$lgt_iso_spec_predicate'(call(_, _, _, _, _)).
+'$lgt_iso_spec_predicate'(call(_, _, _, _, _, _)).
+'$lgt_iso_spec_predicate'(call(_, _, _, _, _, _, _)).
+'$lgt_iso_spec_predicate'(call(_, _, _, _, _, _, _, _)).
 '$lgt_iso_spec_predicate'(!).
 '$lgt_iso_spec_predicate'((Goal; _)) :-
 	(	var(Goal) ->

@@ -21,14 +21,19 @@ RELEASE NOTES
 =============
 
 
-3.39.0 - May ??, 2020
-=====================
+3.39.0 - June ??, 2020
+======================
 
 Logtalk compiler and runtime
 ----------------------------
 
 * CHANGED: The `logtalk` built-in object to call the portability abstraction
 for the `format/2-3` predicates.
+
+* IMPROVED: Linter checks for tautologies and falsehoods in `is/2` goals.
+
+* UPDATED: The compiler internal table of standard predicates to include the
+`call/2-8` predicates.
 
 Prolog adapter and integration files
 ------------------------------------
@@ -38,10 +43,15 @@ portability issues with Tau Prolog and Scryer Prolog.
 
 * UPDATED: Support for Ciao Prolog. Contributed by José Morales.
 
+* UPDATED: Support for Tau Prolog. With contributions from José Antonio Riaza
+Valverde.
+
 Documentation
 -------------
 
 * IMPROVED: Documentation of the `scratch_directory` compiler flag.
+
+* UPDATED: The `QUICK_START.md` file to mention the `tutor` tool.
 
 * FIXED: Broken Handbook links do API documentation. Thanks to Paul Brown for
 the bug report.
@@ -66,8 +76,15 @@ operator.
 * ADDED: Support for Ciao Prolog and Tau Prolog to the portable `os` and
 `random` libraries.
 
+* ADDED: Support for Tau Prolog to the `types` library.
+
 Tools
 -----
+
+* ADDED: Support for Ciao Prolog to the `debugger`, `lgtunit`, and
+`ports_profiler` tools.
+
+* ADDED: Support for Tau Prolog to the `lgtunit` tool.
 
 * UPDATED: The QuickCheck implementation to also print counter-example
 shrink steps when using the `v(true)` option. 
@@ -99,12 +116,22 @@ objects of the network modeling example for recognizing polyhedra represented
 as graphs described in the paper "A framework for network modeling in Prolog"
 by Zdravko I. Markov.
 
+* ADDED: New example, `process_modeling`, of using parametric objects to
+represent and restore shared variables between sets of constraints that are
+stored in different objects.
+
 * UPDATED: The `dcgs` example to illustrate how to use the `call//1` built-in
 non-terminal and a lambda expression to access the input list of a grammar
 rule without breaking DCGs abstraction.
 
+* UPDATED: The `errors` example for the updated linter checks for falsehoods
+and tautologies in `is/2` goals.
+
 Installers and installation scripts
 -----------------------------------
+
+* CHANGED: Make Ciao Prolog and Tau Prolog support available by default in
+POSIX systems.
 
 * UPDATED: The Windows installation script to also detect SICStus Prolog 4.6.x
 versions.

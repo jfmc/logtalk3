@@ -3,7 +3,7 @@
 #############################################################################
 ## 
 ##   Logtalk installation script
-##   Last updated on April 9, 2019
+##   Last updated on May 26, 2020
 ## 
 ##   This file is part of Logtalk <https://logtalk.org/>  
 ##   Copyright 1998-2020 Paulo Moura <pmoura@logtalk.org>
@@ -140,6 +140,7 @@ echo "ensure that this directory is in your execution path."
 echo
 
 ln -sf ../share/logtalk/integration/bplgt.sh bplgt
+ln -sf ../share/logtalk/integration/ciaolgt.sh ciaolgt
 ln -sf ../share/logtalk/integration/cxlgt.sh cxlgt
 ln -sf ../share/logtalk/integration/eclipselgt.sh eclipselgt
 ln -sf ../share/logtalk/integration/gplgt.sh gplgt
@@ -149,6 +150,7 @@ ln -sf ../share/logtalk/integration/qplgt.sh qplgt
 ln -sf ../share/logtalk/integration/quintuslgt.sh quintuslgt
 ln -sf ../share/logtalk/integration/sicstuslgt.sh sicstuslgt
 ln -sf ../share/logtalk/integration/swilgt.sh swilgt
+ln -sf ../share/logtalk/integration/taulgt.sh taulgt
 ln -sf ../share/logtalk/integration/xsblgt.sh xsblgt
 ln -sf ../share/logtalk/integration/xsbmtlgt.sh xsbmtlgt
 ln -sf ../share/logtalk/integration/yaplgt.sh yaplgt
@@ -164,6 +166,7 @@ echo "The following integration scripts are installed for running Logtalk"
 echo "with selected backend Prolog compilers:"
 echo
 echo "* B-Prolog (version 7.8 or later):         bplgt"
+echo "* Ciao Prolog (version 1.19.0 or later):   ciaolgt     (first run may require sudo)"
 echo "* CxProlog (version 0.98.1 or later):      cxlgt"
 echo "* ECLiPSe (version 6.1#143 or later):      eclipselgt"
 echo "* GNU Prolog (version 1.4.5 or later):     gplgt"
@@ -173,6 +176,7 @@ echo "* Qu-Prolog (version 9.7 or later):        qplgt"
 echo "* Quintus Prolog (version 3.3 or later):   quintuslgt  (experimental)"
 echo "* SICStus Prolog (version 4.1.0 or later): sicstuslgt"
 echo "* SWI-Prolog (version 6.6.0 or later):     swilgt"
+echo "* Tau Prolog (version 0.3.0 or later):     taulgt      (experimental)"
 echo "* XSB (version 3.8.0 or later):            xsblgt      (first run may require sudo)"
 echo "* XSB MT (version 3.8.0 or later):         xsbmtlgt    (first run may require sudo)"
 echo "* YAP (version 6.3.4 or later):            yaplgt"
